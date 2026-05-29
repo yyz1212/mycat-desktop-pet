@@ -20,11 +20,11 @@ jobs:
 
       - name: Build exe
         run: |
-          pyinstaller --noconfirm --windowed --name "MyCat桌宠" --icon=NONE --add-data "res;res" --add-data "data;data" --add-data "DyberPet;DyberPet" --add-data "langs.pro;." --hidden-import=PySide6.QtCore --hidden-import=PySide6.QtGui --hidden-import=PySide6.QtWidgets --hidden-import=PySide6.QtMultimedia --collect-all qfluentwidgets run_DyberPet.py
+          pyinstaller --noconfirm --windowed --name "MyCatPet" --add-data "res;res" --add-data "data;data" --add-data "DyberPet;DyberPet" --add-data "langs.pro;." --hidden-import=PySide6.QtCore --hidden-import=PySide6.QtGui --hidden-import=PySide6.QtWidgets --hidden-import=PySide6.QtMultimedia --hidden-import=PySide6.QtSvg --hidden-import=PySide6.QtSvgWidgets --collect-all qfluentwidgets run_DyberPet.py
 
       - name: Upload artifact
         uses: actions/upload-artifact@v4
         with:
           name: MyCat-Desktop-Pet-Windows
-          path: dist/MyCat桌宠/
+          path: dist/MyCatPet/
           compression-level: 9

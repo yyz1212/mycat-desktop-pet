@@ -1,0 +1,30 @@
+{
+    "gravity": 0.1,
+    "set_fall": true,
+    "fixdragspeedx": 1.0,
+    "fixdragspeedy": 1.0,
+    "usertag_dict": {
+        "Kitty": "",
+        "MyCat": "",
+        "ChrisKitty": ""
+    },
+    "scale_dict": {
+        "Kitty": 1.0,
+        "MyCat": 1.0,
+        "ChrisKitty": 1.0
+    },
+    "minipet_scale": {},
+    "volume": 0.5,
+    "on_top_hint": true,
+    "toaster_on": true,
+    "bubble_on": true,
+    "default_pet": "ChrisKitty",
+    "defaultAct": {
+        "ChrisKitty": null,
+        "Kitty": null,
+        "MyCat": null
+    },
+    "language_code": "zh_CN",
+    "themeColor": null,
+    "auto_lock": false
+}

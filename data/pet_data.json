@@ -1,0 +1,52 @@
+{
+    "ChrisKitty": {
+        "HP": 56,
+        "HP_tier": 1,
+        "FV": 79,
+        "FV_lvl": 1,
+        "fv_sys_ver": "v2",
+        "items": {},
+        "coins": 12,
+        "days": 2,
+        "last_opened": "2026-5-29"
+    },
+    "Kitty": {
+        "HP": -1,
+        "HP_tier": 3,
+        "FV": 0,
+        "FV_lvl": 0,
+        "fv_sys_ver": "v2",
+        "items": {},
+        "coins": 0,
+        "days": 1,
+        "last_opened": "2026-5-28"
+    },
+    "MyCat": {
+        "HP": 168,
+        "HP_tier": 3,
+        "FV": 32,
+        "FV_lvl": 5,
+        "fv_sys_ver": "v2",
+        "items": {
+            "汉堡": [
+                1,
+                99999
+            ],
+            "薯条": [
+                2,
+                99999
+            ],
+            "果酱": [
+                3,
+                99999
+            ],
+            "炸鸡": [
+                4,
+                99999
+            ]
+        },
+        "coins": 999999,
+        "days": 1,
+        "last_opened": "2026-5-29"
+    }
+}
