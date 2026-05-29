@@ -1,0 +1,30 @@
+name: Build Windows EXE
+
+on:
+  workflow_dispatch:
+
+jobs:
+  build-windows:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: |
+          pip install pyinstaller
+          pip install "PySide6-Fluent-Widgets>=1.5.4" pyside6 apscheduler pynput tendo
+
+      - name: Build exe
+        run: |
+          pyinstaller --noconfirm --windowed --name "MyCat桌宠" --icon=NONE --add-data "res;res" --add-data "data;data" --add-data "DyberPet;DyberPet" --add-data "langs.pro;." --hidden-import=PySide6.QtCore --hidden-import=PySide6.QtGui --hidden-import=PySide6.QtWidgets --hidden-import=PySide6.QtMultimedia --collect-all qfluentwidgets run_DyberPet.py
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: MyCat-Desktop-Pet-Windows
+          path: dist/MyCat桌宠/
+          compression-level: 9

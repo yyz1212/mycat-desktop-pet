@@ -1,0 +1,15 @@
+{
+  "default": {
+    "images": "default",
+    "act_num": 1,
+    "frame_refresh": 0.12
+  },
+  "drag": {
+    "images": "default",
+    "act_num": 1
+  },
+  "fall": {
+    "images": "default",
+    "act_num": 1
+  }
+}
