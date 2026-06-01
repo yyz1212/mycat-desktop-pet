@@ -1,6 +1,6 @@
 {
     "ChrisKitty": {
-        "HP": 56,
+        "HP": 55,
         "HP_tier": 1,
         "FV": 79,
         "FV_lvl": 1,
@@ -21,32 +21,76 @@
         "days": 1,
         "last_opened": "2026-5-28"
     },
-    "MyCat": {
-        "HP": 168,
-        "HP_tier": 3,
-        "FV": 32,
-        "FV_lvl": 5,
+    "安安踩奶": {
+        "HP": 83,
+        "HP_tier": 1,
+        "FV": 95,
+        "FV_lvl": 9,
         "fv_sys_ver": "v2",
         "items": {
             "汉堡": [
                 1,
-                99999
+                99974
             ],
             "薯条": [
                 2,
-                99999
+                99990
             ],
             "果酱": [
                 3,
-                99999
+                99980
             ],
             "炸鸡": [
                 4,
-                99999
+                99993
             ]
         },
-        "coins": 999999,
+        "coins": 1000325,
+        "days": 4,
+        "last_opened": "2026-6-1"
+    },
+    "小福": {
+        "HP": 198,
+        "HP_tier": 3,
+        "FV": 2,
+        "FV_lvl": 0,
+        "fv_sys_ver": "v2",
+        "items": {},
+        "coins": 0,
         "days": 1,
-        "last_opened": "2026-5-29"
+        "last_opened": "2026-6-1"
+    },
+    "安安": {
+        "HP": 197,
+        "HP_tier": 3,
+        "FV": 3,
+        "FV_lvl": 0,
+        "fv_sys_ver": "v2",
+        "items": {},
+        "coins": 0,
+        "days": 1,
+        "last_opened": "2026-6-1"
+    },
+    "小福睡觉": {
+        "HP": 198,
+        "HP_tier": 3,
+        "FV": 2,
+        "FV_lvl": 0,
+        "fv_sys_ver": "v2",
+        "items": {},
+        "coins": 0,
+        "days": 1,
+        "last_opened": "2026-6-1"
+    },
+    "全家福": {
+        "HP": 176,
+        "HP_tier": 3,
+        "FV": 4,
+        "FV_lvl": 1,
+        "fv_sys_ver": "v2",
+        "items": {},
+        "coins": 0,
+        "days": 1,
+        "last_opened": "2026-6-1"
     }
 }

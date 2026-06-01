@@ -23,7 +23,59 @@
             ]
         }
     },
-    "MyCat":{
+    "安安踩奶":{
+        "站立":{
+            "act_type":"random_act",
+            "special_act":false,
+            "unlocked":true,
+            "in_playlist":true,
+            "act_prob":1.0,
+            "status_type":[
+                2,
+                0
+            ]
+        }
+    },
+    "小福":{
+        "站立":{
+            "act_type":"random_act",
+            "special_act":false,
+            "unlocked":true,
+            "in_playlist":true,
+            "act_prob":1.0,
+            "status_type":[
+                2,
+                0
+            ]
+        }
+    },
+    "安安":{
+        "站立":{
+            "act_type":"random_act",
+            "special_act":false,
+            "unlocked":true,
+            "in_playlist":true,
+            "act_prob":1.0,
+            "status_type":[
+                2,
+                0
+            ]
+        }
+    },
+    "小福睡觉":{
+        "站立":{
+            "act_type":"random_act",
+            "special_act":false,
+            "unlocked":true,
+            "in_playlist":true,
+            "act_prob":1.0,
+            "status_type":[
+                2,
+                0
+            ]
+        }
+    },
+    "全家福":{
         "站立":{
             "act_type":"random_act",
             "special_act":false,

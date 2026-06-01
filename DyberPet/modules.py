@@ -60,7 +60,11 @@ class Animation_worker(QObject):
     def run(self):
         """Run animation in a separate thread"""
         print('start running pet %s'%(self.pet_conf.petname))
-        time.sleep(5)
+        # 可中断的启动等待（替代原来的 time.sleep(5)）
+        for _ in range(25):
+            if self.is_killed:
+                return
+            time.sleep(0.2)
         while not self.is_killed:
             #if self.is_hp:
             #    print(self.is_hp, self.is_fv)

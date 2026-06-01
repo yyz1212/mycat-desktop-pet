@@ -201,8 +201,9 @@ class SettingInterface(ScrollArea):
 
         # About ==============================================================================
         self.aboutGroup = SettingCardGroup(self.tr('About'), self.scrollWidget)
-        update_needed, update_text = self._checkUpdate()
-        settings.UPDATE_NEEDED = update_needed
+        update_needed = False
+        update_text = self.tr('Updates check disabled')
+        settings.UPDATE_NEEDED = False
         self.aboutCard = HyperlinkCard(
             settings.RELEASE_URL,
             self.tr('Release Website'),

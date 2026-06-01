@@ -1113,13 +1113,32 @@ class PetWidget(QWidget):
         """
         if self.curr_pet_name == pet_name:
             return
-        
+
         # close all accessory widgets (subpet, accessory animation, etc.)
         self.close_all_accs.emit()
 
-        # stop animation thread and start again
-        self.stop_thread('Animation')
-        self.stop_thread('Interaction')
+        # 只发送 kill 信号，不等待线程退出（避免阻塞主线程）
+        self.workers['Animation'].kill()
+        self.workers['Animation'].sig_setimg_anim.disconnect()
+        self.workers['Animation'].sig_move_anim.disconnect()
+        self.workers['Animation'].sig_repaint_anim.disconnect()
+        self.workers['Animation'].acc_regist.disconnect()
+        self.workers['Interaction'].kill()
+        self.workers['Interaction'].sig_setimg_inter.disconnect()
+        self.workers['Interaction'].sig_move_inter.disconnect()
+        self.workers['Interaction'].sig_act_finished.disconnect()
+        self.workers['Interaction'].sig_interact_note.disconnect()
+        self.workers['Interaction'].acc_regist.disconnect()
+
+        # 保持旧线程引用，等线程自然退出后清理（防止 QThread destroyed while running）
+        old_anim_thread = self.threads['Animation']
+        old_inter_thread = self.threads['Interaction']
+        if not hasattr(self, '_old_threads'):
+            self._old_threads = []
+        old_anim_thread.finished.connect(lambda: self._old_threads.remove(old_anim_thread) if old_anim_thread in self._old_threads else None)
+        old_inter_thread.finished.connect(lambda: self._old_threads.remove(old_inter_thread) if old_inter_thread in self._old_threads else None)
+        self._old_threads.append(old_anim_thread)
+        self._old_threads.append(old_inter_thread)
 
         # reload pet data
         settings.pet_data._change_pet(pet_name)
@@ -1128,15 +1147,10 @@ class PetWidget(QWidget):
         self.init_conf(pet_name)
 
         # Change status
-        self.pet_hp.init_HP(settings.pet_data.hp, sys_hp_interval) #2)
+        self.pet_hp.init_HP(settings.pet_data.hp, sys_hp_interval)
         self.pet_fv.init_FV(settings.pet_data.fv, settings.pet_data.fv_lvl)
 
-        # Change status related behavior
-        #self.workers['Animation'].hpchange(settings.pet_data.hp_tier, None)
-        #self.workers['Animation'].fvchange(settings.pet_data.fv_lvl)
-
         # Update Backpack
-        #self._init_Inventory()
         self.refresh_bag.emit()
         self.refresh_acts.emit()
 
@@ -1368,10 +1382,7 @@ class PetWidget(QWidget):
 
     def _compensate_rewards(self):
         self.compensate_rewards.emit()
-        # Note user if App updates available
-        if settings.UPDATE_NEEDED:
-            self.register_notification("system",
-                                       self.tr("App update available! Please check System - Settings - Check Updates for detail."))
+        # 更新提示已禁用
 
     def register_notification(self, note_type, message):
         self.setup_notification.emit(note_type, message)
@@ -1630,9 +1641,12 @@ class PetWidget(QWidget):
 
     def stop_thread(self, module_name):
         self.workers[module_name].kill()
-        self.threads[module_name].terminate()
-        self.threads[module_name].wait()
-        #self.threads[module_name].wait()
+        # 不使用 terminate()（macOS + Python GIL 下可能卡死）
+        # 而是等待 worker 自然检测到 is_killed 并退出
+        if not self.threads[module_name].wait(5000):
+            # 超时才强制终止
+            self.threads[module_name].terminate()
+            self.threads[module_name].wait(1000)
 
     def follow_mouse_act(self):
         sender = self.sender()
@@ -2032,6 +2046,25 @@ class PetWidget(QWidget):
         self.daysLabel.setText(daysText)
 
 
+
+
+class PetImageLoadThread(QThread):
+    """后台线程加载宠物图片（使用线程安全的 QImage）"""
+
+    def __init__(self, pet_name: str):
+        super().__init__()
+        self.pet_name = pet_name
+        self.result = {}
+
+    def run(self):
+        img_dir = os.path.join(basedir, 'res/role/{}/action/'.format(self.pet_name))
+        images = os.listdir(img_dir)
+        qimage_dict = {}
+        for image in images:
+            qimg = QImage()
+            qimg.load(img_dir + image)
+            qimage_dict[image.split('.')[0]] = qimg
+        self.result = qimage_dict
 
 
 def _load_all_pic(pet_name: str) -> dict:

@@ -9,6 +9,7 @@ from DyberPet.utils import text_wrap, get_child_folder
 
 from PySide6.QtCore import Qt
 from PySide6.QtGui import QImage, QPixmap
+from PySide6.QtWidgets import QApplication
 
 from .utils import get_file_time, find_dir_with_subdir, convert_fv_versions
 
@@ -101,13 +102,14 @@ class PetConfig:
             o.dropspeed = conf_params.get('dropspeed', 1.0) #not needed in v0.15+
             #o.gravity = conf_params.get('gravity', 4.0)
 
-            # 
+            #
             # 初始化所有动作
             act_path = os.path.join(basedir, 'res/role/{}/act_conf.json'.format(pet_name))
             act_conf = dict(json.load(open(act_path, 'r', encoding='UTF-8')))
             act_dict = {}
             #with open(act_path, 'r', encoding='UTF-8') as f:
-            act_dict = {k: Act.init_act(v, pic_dict, o.scale, pet_name, 'role', k) for k, v in act_conf.items()}
+            for k, v in act_conf.items():
+                act_dict[k] = Act.init_act(v, pic_dict, o.scale, pet_name, 'role', k)
             o.act_dict = act_dict
             # 载入默认动作
             o.default = act_dict[conf_params['default']]
@@ -515,7 +517,7 @@ class Act:
             img.append(pic_dict["%s_%s"%(images, i)])
 
         if scale != 1:
-            img = [i.scaled(int(i.width() * scale), 
+            img = [i.scaled(int(i.width() * scale),
                             int(i.height() * scale),
                             aspectMode=Qt.KeepAspectRatio,
                             mode=Qt.SmoothTransformation) for i in img]
