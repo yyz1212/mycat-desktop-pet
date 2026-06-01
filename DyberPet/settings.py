@@ -9,8 +9,13 @@ from DyberPet.conf import PetData, TaskData, ActData, ItemData
 from PySide6 import QtCore
 
 if platform == 'win32':
-    basedir = ''
-    BASEDIR = ''
+    import sys as _sys
+    if getattr(_sys, 'frozen', False):
+        basedir = os.path.dirname(_sys.executable)
+    else:
+        basedir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+    basedir = basedir.replace('\\', '/')
+    BASEDIR = basedir
 else:
     #from pathlib import Path
     basedir = os.path.dirname(__file__) #Path(os.path.dirname(__file__))
