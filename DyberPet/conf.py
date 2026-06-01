@@ -15,7 +15,7 @@ from .utils import get_file_time, find_dir_with_subdir, convert_fv_versions
 if platform == 'win32':
     import sys as _sys
     if getattr(_sys, 'frozen', False):
-        basedir = os.path.dirname(_sys.executable)
+        basedir = _sys._MEIPASS
     else:
         basedir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
     basedir = basedir.replace('\\', '/')
