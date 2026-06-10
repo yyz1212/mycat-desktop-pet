@@ -251,6 +251,8 @@ def init_settings():
         language_code = data_params.get('language_code', QtCore.QLocale().name())
         on_top_hint = data_params.get('on_top_hint', True)
         default_pet = data_params.get('default_pet', pets[0])
+        if default_pet not in pets:
+            default_pet = pets[0]
         defaultAct = data_params.get('defaultAct', {})
         themeColor = data_params.get('themeColor', None)
 
