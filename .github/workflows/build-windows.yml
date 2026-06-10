@@ -22,9 +22,13 @@ jobs:
         run: |
           pyinstaller --noconfirm --windowed --name "MyCatPet" --add-data "res;res" --add-data "data;data" --add-data "DyberPet;DyberPet" --add-data "langs.pro;." --hidden-import=PySide6.QtCore --hidden-import=PySide6.QtGui --hidden-import=PySide6.QtWidgets --hidden-import=PySide6.QtMultimedia --hidden-import=PySide6.QtSvg --hidden-import=PySide6.QtSvgWidgets --collect-all qfluentwidgets run_DyberPet.py
 
+      - name: Package with 7z (preserves Chinese filenames)
+        run: |
+          7z a -tzip dist/MyCat-Desktop-Pet-Windows.zip ./dist/MyCatPet/* -mcu=on
+
       - name: Upload artifact
         uses: actions/upload-artifact@v4
         with:
           name: MyCat-Desktop-Pet-Windows
-          path: dist/MyCatPet/
-          compression-level: 9
+          path: dist/MyCat-Desktop-Pet-Windows.zip
+          compression-level: 0
