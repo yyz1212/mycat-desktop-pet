@@ -47,6 +47,73 @@
     "fv_lock": 2,
     "description": "炸鸡就是炸鸡"
   },
+  "猫条": {
+    "name": "猫条",
+    "image": "cat_strip.png",
+    "effect_HP": 12,
+    "effect_FV": 5,
+    "drop_rate": 0.4,
+    "fv_lock": 0,
+    "buff":{
+      "effect": "FV_stop",
+      "expiration": 180,
+      "description":"香喷喷的猫条！使用后3分钟内好感度不会下降"
+    },
+    "description": "猫咪最爱的液态零食，一撕开就疯狂舔舔"
+  },
+  "冻干": {
+    "name": "冻干",
+    "image": "freeze_dried.png",
+    "effect_HP": 18,
+    "effect_FV": 8,
+    "drop_rate": 0.3,
+    "fv_lock": 1,
+    "buff":{
+      "effect": "coin",
+      "interval": 20,
+      "value": 10,
+      "expiration": 300,
+      "description":"高蛋白冻干！使用后每20秒获得10金币，持续5分钟"
+    },
+    "description": "冻干鸡肉粒，营养丰富，嘎嘣脆"
+  },
+  "猫粮": {
+    "name": "猫粮",
+    "image": "cat_food.png",
+    "effect_HP": 20,
+    "effect_FV": 3,
+    "drop_rate": 0.5,
+    "fv_lock": 0,
+    "description": "每日主食猫粮，均衡营养，管饱不管味"
+  },
+  "猫饭": {
+    "name": "猫饭",
+    "image": "cat_meal.png",
+    "effect_HP": 25,
+    "effect_FV": 12,
+    "drop_rate": 0.15,
+    "fv_lock": 2,
+    "buff":{
+      "effect": "HP_stop",
+      "expiration": 600,
+      "description":"精心烹制的猫饭！使用后10分钟内饱食度不会下降"
+    },
+    "description": "手工鲜制猫饭，三文鱼配鸡胸肉，米其林猫级料理"
+  },
+  "小鱼饼干": {
+    "name": "小鱼饼干",
+    "image": "fish_cookie.png",
+    "effect_HP": 1500,
+    "effect_FV": 500,
+    "drop_rate": 0.01,
+    "fv_lock": 0,
+    "buff":{
+      "effect": "HP_stop",
+      "expiration": 3600,
+      "description":"传说中的小鱼饼干！使用后1小时内饱食度不会下降"
+    },
+    "description": "神秘的小鱼饼干，效果是普通食物的100倍！猫猫的终极美味~"
+  },
   "coin": {
     "name":{
       "zh_CN":"啵币",
